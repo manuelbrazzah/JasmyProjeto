@@ -91,7 +91,7 @@
 
      const Salvar = () =>{  
 
-      store.dispatch("UPDATE_PRODUTO",
+      store.dispatch("UPDATE_PRODUTo",
  
       {
       id: props.dados.value.id1,    
@@ -104,7 +104,7 @@
     
      )
 
-     console.log('Os editados:',props.value.nome1)
+     console.log('Os editadosnokddkkd:',props.value.nome1)
      }
 
  
