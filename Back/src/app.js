@@ -8,6 +8,7 @@ app.use(cors())
 app.use(express.json())
 
 //app.use('/api', ProdutoteRoutes) 
+//so pra fazer um corro
 
 
     import { criarProduto, listarProduto, editarProduto, removerProduto } from './controllers/produtoController.js'
