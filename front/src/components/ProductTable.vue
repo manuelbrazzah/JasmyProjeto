@@ -8,16 +8,17 @@
         placeholder="Pesquisar por descrição ou código"
         class="border rounded-md px-3 py-2 w-64 focus:outline-none focus:ring focus:ring-blue-300"
       />
-    </div>
+    </div> 
 
     <table class="min-w-full border border-gray-200 rounded-lg text-sm">
       <thead class="bg-blue-50 text-blue-700 uppercase text-xs">
         <tr>
            <th class="p-2 border">Nome</th>
-          <th class="p-2 border">Cod.</th>
+           <th class="p-2 border">Preço</th>
+           <th class="p-2 border">Cod.</th>
           <th class="p-2 border">C.Barras</th>
           <th class="p-2 border">Descrição</th>
-          <th class="p-2 border">Preço</th>
+          <th class="p-2 border">Categoria</th>
           <th class="p-2 border">Stock</th>
           <th class="p-2 border">Estado</th>
           <th class="p-2 border">Data</th>
@@ -27,15 +28,17 @@
       </thead>
       <tbody>
         <tr v-for=" prod in store.state.produto2" :key="prod.id" class="hover:bg-gray-50 text-center">
-          <td class="p-2 border"> {{ prod.nome}}</td> 
+          <td class="p-2 border"> {{  prod.nome}}</td> 
+            <td class="p-2 border">Kz {{ formatarPreco(prod.preco) }}</td>
           <td class="p-2 border"> {{ prod.codigo }}</td>
           <td class="p-2 border">{{ prod.codBarra }}</td>
           <td class="p-2 border">{{ prod.descricao }}</td>
-          <td class="p-2 border">Kz {{ 150 }}</td>
-          <td class="p-2 border">{{  10 }}</td> 
-          <td class="p-2 border text-green-600">Disponível</td> 
-          <td class="p-2 border">{{}}</td>
-          <td @click="Editar2( prod.id, prod.nome, prod.codigo, prod.codBarra, prod.descricao    
+           <td class="p-2 border">{{ prod.categoria }}</td>
+          <td class="p-2 border">{{ prod.stock }}</td> 
+          <td class="p-2 border text-green-600">{{prod.estado}}</td> 
+          <td class="p-2 border">{{prod.cadastradoEm}}</td>
+          <td @click="Editar2( prod.id,prod.nome, prod.preco, prod.codigo, prod.codBarra,
+               prod.descricao, prod.categoria, prod.stock, prod.estado    
 
            )" class="p-2 border text-yellow-500 cursor-pointer">✏️</td>
           
@@ -78,14 +81,18 @@ const AddArtigo = ()=>{
   // Emitir editar
    
      
-  const Editar2 = (id, nome, codigo, codBarra, descricao)=>{
+  const Editar2 = (id, nome, preco, codigo, codBarra, descricao, categoria,stock, estado)=>{
     
       const produtoEd = {
         id1:id,
         nome1 : nome,
+        preco1:preco,
         codigo1: codigo,
         codBarra1: codBarra,
-        descricao1:descricao
+        descricao1:descricao,
+        categoria1:categoria,
+        stock1: stock,
+        estado1:estado
       }
 
     emit('Editar1',produtoEd)
@@ -97,5 +104,14 @@ const AddArtigo = ()=>{
 
        store.dispatch('DELETE_PRODUTO',id);
     
+  }
+
+   // Formatar o formulario do preco
+  const formatarPreco = (valor) => {
+    const numero = parseFloat(valor)
+    if(isNaN(numero)) return '0'
+    return new
+    Intl.NumberFormat('pt-PT').format(valor)
+
   }
 </script>

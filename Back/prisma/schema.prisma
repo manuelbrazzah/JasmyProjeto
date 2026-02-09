@@ -5,24 +5,62 @@
 
 datasource db {
   provider = "mysql"
+
   url      = env("DATABASE_URL")
+  
 }
 
-// model Cliente {
-  // id        Int      @id @default(autoincrement())
-   // nome      String
-  // email     String   @unique
- //  telefone  String?
- //  endereco  String?
-  // criadoEm  DateTime @default(now())
- // }
      
+  enum EstadoProduto {
+    DISPONIVEL
+    NAO_DISPONIVEL
+  }
+
  model Produto {
   id        Int      @id  @default(autoincrement())
    nome      String
+   preco   Float @default(0.0)
   codigo    String?
   codBarra  String?
   descricao String?
+  categoria String?
+  stock    Int      @default(0)
+  itens ItemVenda[]
+  estado EstadoProduto @default(DISPONIVEL)
    cadastradoEm  DateTime @default(now())
+   updatedAt  DateTime @default(now()) @updatedAt
+
+    } 
+
+    model Venda {
+    id        Int @id    @default(autoincrement())
+    total       Float    @default(0.00)
+    desconto    Float    @default(0.00)
+    totalFinal  Float    @default(0.00)
+    valorPago   Float    @default(0.00)
+    troco       Float    @default(0.00)
+   
+     estado    String    @default("FINALIZADA")
+     itens      ItemVenda[]
+
+     creatdAt   DateTime  @default(now())
+     updatedAt  DateTime  @updatedAt
+        
     }
     
+
+    model ItemVenda {
+
+      id            Int   @id   @default(autoincrement())
+
+      vendaId       Int 
+      produtoId     Int 
+      codigo        String
+      descricao     String
+      quantidade    Int
+      preco         Float 
+
+      venda   Venda @relation(fields:[vendaId],references: [id])
+
+      produto Produto @relation(fields:[produtoId],references: [id])
+    }

@@ -44,7 +44,11 @@
           </div>
         </div>
       </header>
-      <ReltVenda />
+     
+       <!-- 
+       <ReltVenda />
+       -->
+      <ReltProduto />
       <!-- Cards -->
 
       <!-- Charts -->
@@ -59,8 +63,8 @@
 <script setup>
 import * as echarts from "echarts";
 import { onMounted, ref } from "vue";
-import ReltVenda from "../components/ReltVenda.vue";
-
+//import ReltVenda from "../components/ReltVenda.vue";
+import ReltProduto from "../components/ReltProduto.vue";
 const chart1 = ref(null);
 const chart2 = ref(null);
 const chart3 = ref(null);

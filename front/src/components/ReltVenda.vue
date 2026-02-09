@@ -178,13 +178,60 @@
       </div>
     </div>
   </div>
+  <h1> VENDAS</h1>
+
+
+
+
+    <!--
+    <table class="min-w-full border border-gray-200 rounded-lg text-sm">
+      <thead class="bg-blue-50 text-blue-700 uppercase text-xs">
+        <tr>
+           <th class="p-2 border">id</th>
+           <th class="p-2 border">total</th>
+           <th class="p-2 border">desconto</th>
+          <th class="p-2 border">totalFinal</th>
+          <th class="p-2 border">valorPago</th>
+          <th class="p-2 border">troco</th>
+          <th class="p-2 border">Estado</th>
+          <th class="p-2 border">itens</th>
+          <th class="p-2 border">Data</th>
+          <th class="p-2 border">Editar</th>
+          <th class="p-2 border">Remover</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for=" vd in store.state.Vendidos" :key="prod.id" class="hover:bg-gray-50 text-center">
+          <td class="p-2 border"> {{  dkkd}} </td> 
+          <td class="p-2 border">Kz {{ vd.total }}</td>
+          <td class="p-2 border"> {{ vd.desconto }}</td>
+          <td class="p-2 border">{{ vd.totalFinal }}</td>
+          <td class="p-2 border">{{ vd.ValorPago }}</td>
+          <td class="p-2 border">{{ vd.troco }}</td>
+          <td class="p-2 border">{{ vd.estado }}</td> 
+          <td class="p-2 border text-green-600">{{vd.itens}}</td> 
+          <td class="p-2 border">{{vd.creatdAt }}</td>
+          
+          
+                   
+         
+        </tr>
+      </tbody>
+    </table>
+  
+    --->
+      
+     
+
 </template>
 
 <script setup>
 
 import * as echarts from "echarts";
 import { onMounted, ref } from "vue";
-
+import {useStore} from "vuex"
+ 
+ const store = useStore()
  import {
   DollarSign,
   ShoppingCart,
@@ -301,7 +348,21 @@ onMounted(() => {
     ],
   }); 
 
+
+
 });
+
+
+
+
+
+
+
+//   onMounted( ()=>{
+  
+// }  
+// )
+
 </script>
 
 <style scoped>
